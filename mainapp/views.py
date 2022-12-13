@@ -80,6 +80,8 @@ def hp(request):
 @api_view(['POST'])
 def hpPost(request):
     request.session['hp']=request.POST["hp"]
+    print(request.POST["hp"])
+    print(request.session['hp'])
     return Response("true")
 def cardorsamsung(request):
     return render(request, 'cardorsamsung.html')
