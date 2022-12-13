@@ -38,10 +38,7 @@ def test(request):
 
 def test2(request):
     print(request.POST)
-    form = cart()
-    form.category = request.POST.get('category', False)
-    form.ice = request.POST["ice"]
-    form.save()
+    
     request.session['category'] = request.POST.get('category', False)
     request.session['ice'] = request.POST["ice"]
     return redirect('/main/cartview/')
@@ -85,17 +82,23 @@ def hp(request):
     else:
         return render(request, 'hp.html')
 
-@api_view(['GET'])
+
 def card(request):
     if(request.method == 'POST'):
 
         return "true"
     else:
-        return Response("qwer!!")
+        form = cart()
+        form.hp = request.session['hp']
+        form.category = request.session['category']
+        form.cardorSamsung="card"
+        form.save()
+        context = {"carts": cart.objects.all()}
+        return render(request, 'card.html', context=context)
 
-
+@api_view(['GET'])
 def samsung(request):
-    return render(request, 'samsung.html')
+    return Response("qwer!!")
 
 
 def fin(request):

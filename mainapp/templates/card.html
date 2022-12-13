@@ -16,6 +16,14 @@
 </head>
 <body>
     <h1>card</h1>
+            {% for i in carts %}
+            <h3 style="display:inline;"> {{i.hp}} </h3>
+            <h3 style="display:inline;"> {{i.category}} </h3>
+            <h3 style="display:inline;"> {{i.cardorSamsung}} </h3>
+            <br>
+            <br>
+            <br>
+            {% endfor %}
     <button class="btn btn-primary mb-3"><a href="/main/fin/">fin</a></button>
 </body>
 </html>
