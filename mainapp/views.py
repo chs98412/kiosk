@@ -93,3 +93,7 @@ def fin(request):
         print(i.name)
 
     return render(request,'fin.html',context=context)
+
+def users(request):
+    context={"users":user.objects.all()}
+    return render(request,'users.html',context=context)
