@@ -10,6 +10,7 @@ urlpatterns = [
     path('hp/', views.hp),
     path('card/', views.card),
     path('fin/', views.fin),
-    path('users/', views.users)
-
+    path('users/', views.users),
+    path('hppost/', views.hpPost),
+    path('cardorsamsung/', views.cardorsamsung),
 ]

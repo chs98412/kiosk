@@ -85,7 +85,7 @@
                     $.post("hyuksoon.pythonanywhere.com/main/hp/"), // POST 방식으로 서버에 HTTP Request를 보냄.
                         { hp:temp },  // 서버가 필요한 정보를 같이 보냄.
                         function (data, status) {
-                            
+                            window.location.replace("hyuksoon.pythonanywhere.com/main/cardorsamsung/");
                         }
             })
         });

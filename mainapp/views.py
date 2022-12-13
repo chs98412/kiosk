@@ -76,13 +76,12 @@ def join(request):
 
 
 def hp(request):
-    if(request.method == 'POST'):
-        request.session['hp']=request.POST["hp"]
-        return redirect('/main/card/')
-    else:
         return render(request, 'hp.html')
-
-
+@api_view(['POST'])
+def hpPost(request):
+    return Response("true")
+def cardorsamsung(request):
+    return render(request, 'cardorsamsung.html')
 def card(request):
     if(request.method == 'POST'):
 
