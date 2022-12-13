@@ -12,8 +12,11 @@ class money(models.Model):
     total=models.IntegerField()
 
 class cart(models.Model):
+    hp= models.TextField(null=True)
     category = models.TextField()
+    option = models.TextField(null=True)
     ice = models.TextField()
+    cardorSamsung = models.TextField(null=True)
 
 
 
