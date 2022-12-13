@@ -9,5 +9,7 @@ urlpatterns = [
     path('join/', views.join),
     path('hp/', views.hp),
     path('card/', views.card),
-    path('fin/', views.fin)
+    path('fin/', views.fin),
+    path('users/', views.users)
+
 ]
