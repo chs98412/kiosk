@@ -123,8 +123,10 @@ def paycheck(request):
 @api_view(['POST'])
 def done(request):
     try:
-        print(request.POST["hp"])
-        data=cart.objects.get(hp=request.POST["hp"])
+        
+        temp=request.POST["hp"]
+        print("hp: ",request.POST["hp"])
+        data=cart.objects.get(hp=temp)
         form=order()
         form.hp=data.hp
         form.name=request.POST['name']
