@@ -127,15 +127,18 @@ def paycheck(request):
 def done(request):
     try:
         
-        temp=request.POST["hp"]
-        data=cart.objects.get(hp=temp)
-        form=order()
-        form.hp=data.hp
-        form.name=request.POST['name']
-        form.result=request.POST['result']
-        form.category=data.category
-        form.reason=request.POST['reason']
-        return Response("done")
+        serializer=orderSerial(data=request.data)
+        if serializer.is_valid():
+            hp=serializer.data['hp']
+            data=cart.objects.get(hp=hp)
+            form=order()
+            form.hp=data.hp
+            form.name=serializer.data['name']
+            form.result=serializer.data['result']
+            form.category=data.category
+            form.reason=serializer.data['reason']
+            form.save()
+            return Response("done")
     except:
         return Response("error")
 def donepage(request):
@@ -161,7 +164,13 @@ def cartlist(request):
     return Response(serializer.data,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def cartlist(request):
+def cartthing(request):
     carts=cart.objects.get(hp=request.GET['hp'])
     serializer=cartSerial(carts)
-    return Response(serializer.data,status=status.HTTP_200_OK)
+    if serializer.data['category']=="coffee":
+        return Response("coffee",status=status.HTTP_200_OK)
+    if serializer.data['category']=="green":
+        return Response("green",status=status.HTTP_200_OK)
+    if serializer.data['category']=="berry":
+        return Response("berry",status=status.HTTP_200_OK)
+    
