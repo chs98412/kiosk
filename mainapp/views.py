@@ -107,6 +107,7 @@ def samsung(request):
 @api_view(['POST'])
 def paycheck(request):
     try:
+        print(request.POST)
         data=cart.objects.get(hp=request.POST['hp'])
         if data.cardorSamsung==request.POST['cardorSamsung']:
             return Response("same")
