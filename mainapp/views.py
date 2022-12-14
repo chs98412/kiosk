@@ -110,6 +110,8 @@ def paycheck(request):
     try:
         serializer=ckSerial(data=request.data)
         if serializer.is_valid():
+            print("!!")
+            print(serializer.data)
             hp=serializer.data.hp
             paymethod=serializer.data.cardorSamsung,
 
