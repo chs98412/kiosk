@@ -87,7 +87,7 @@ def cardorsamsung(request):
     return render(request, 'cardorsamsung.html')
 def card(request):
         request.session['cardorSamsung']="card"
-        redirect('/main/pay/')
+        return redirect('/main/pay/')
 def pay(request):
         try:
             data=cart.objects.get(hp=request.POST['hp'])
@@ -103,7 +103,7 @@ def pay(request):
         return render(request, 'pay.html')
 def samsung(request):
     request.session['cardorSamsung']="samsung"
-    redirect('/main/pay/')
+    return redirect('/main/pay/')
 @api_view(['POST'])
 def paycheck(request):
     try:
