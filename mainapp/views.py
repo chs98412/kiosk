@@ -141,6 +141,6 @@ def fin(request):
 def users(request):
     context = {"users": user.objects.all()}
     return render(request, 'users.html', context=context)
-@api_view(['GET'])
 def carts(request):
-    return Response(cart.objects.all())
+    context = {"carts": cart.objects.all()}
+    return render(request, 'carts.html', context=context)
