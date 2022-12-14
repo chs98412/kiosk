@@ -13,4 +13,10 @@ urlpatterns = [
     path('users/', views.users),
     path('hppost/', views.hpPost),
     path('cardorsamsung/', views.cardorsamsung),
+    path('pay/', views.pay),
+    path('samsung/', views.samsung),
+    path('paycheck/', views.paycheck),
+    path('done/', views.done),
+    path('donepage/', views.donepage),
+
 ]

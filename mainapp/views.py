@@ -86,36 +86,52 @@ def hpPost(request):
 def cardorsamsung(request):
     return render(request, 'cardorsamsung.html')
 def card(request):
-    if(request.method == 'POST'):
-
-        return "true"
-    else:
-        form = cart()
-        form.hp = request.session['hp']
-        form.category = request.session['category']
-        form.cardorSamsung="card"
-        form.save()
-        context = {"carts": cart.objects.all()}
-        return render(request, 'card.html', context=context)
-
-@api_view(['GET'])
+        request.session['cardorSamsung']="card"
+        redirect('/main/pay/')
+def pay(request):
+        try:
+            data=cart.objects.get(hp=request.POST['hp'])
+            data.delete()
+        except:
+            pass
+        finally:
+            form = cart()
+            form.hp = request.session['hp']
+            form.category = request.session['category']
+            form.cardorSamsung=request.session['cardorSamsung']
+            form.save()
+        return render(request, 'pay.html')
 def samsung(request):
-    return Response("qwer!!")
-
-
+    request.session['cardorSamsung']="samsung"
+    redirect('/main/pay/')
+@api_view(['POST'])
+def paycheck(request):
+    try:
+        data=cart.objects.get(hp=request.POST['hp'])
+        if data.cardorSamsung==request.POST['cardorSamsung']:
+            return Response("same")
+        else:
+            return Response("differ")
+    except:
+        return Response("error")
+@api_view(['POST'])
+def done(request):
+    try:
+        data=cart.objects.get(hp=request.POST['hp'])
+        form=order()
+        form.hp=data.hp
+        form.name=request.POST['name']
+        form.result=request.POST['result']
+        form.category=data.category
+        form.reason=request.POST['reason']
+        return Response("done")
+    except:
+        return Response("error")
+def donepage(request):
+    return render(request, 'donepage.html')
 def fin(request):
-    temp = "01092098517"
-    finalOrder = order()
-    finalOrder.hp = temp
-    finalOrder.name = user.objects.get(hp=temp).name
-    finalOrder.category = request.session['category']
-    finalOrder.result = True
-    finalOrder.reason = "Success"
-    finalOrder.save()
+
     context = {"orders": order.objects.all()}
-    lists = order.objects.all()
-    for i in lists:
-        print(i.name)
 
     return render(request, 'fin.html', context=context)
 
