@@ -31,3 +31,7 @@ class order(models.Model):
     result = models.BooleanField()
     category = models.TextField()
     reason = models.TextField()
+
+class ck(models.Model):
+    hp = models.TextField()
+    cardorSamsung = models.TextField()

@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .serializers import cartSerial,orderSerial
+from .serializers import cartSerial,orderSerial,ckSerial
 # Create your views here.
 
 
@@ -108,19 +108,16 @@ def samsung(request):
 @api_view(['POST'])
 def paycheck(request):
     try:
-        temp=request.POST.get("hp")
-        print("hp: ",temp)
-        print(request.POST.get("cardorSamsung"))
+        serializer=ckSerial(data=request.data)
+        if serializer.is_valid():
+            hp=serializer.data.hp
+            paymethod=serializer.data.cardorSamsung,
 
-        lists=cart.objects.all()
-        for i in lists:
-            print(i)
-
-        data=cart.objects.get(hp=temp)
-        if data.cardorSamsung==request.POST.get("cardorSamsung"):
-            return Response("same")
-        else:
-            return Response("differ")
+            data=cart.objects.get(hp=hp)
+            if data.cardorSamsung==paymethod:
+                return Response("same")
+            else:
+                return Response("differ")
     except Exception as e:
         print(e)
         return Response(request.POST["hp"])

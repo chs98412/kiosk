@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import cart,order
+from .models import cart,order,ck
 
 class cartSerial(serializers.ModelSerializer):
     class Meta:
@@ -11,4 +11,7 @@ class orderSerial(serializers.ModelSerializer):
     class Meta:
         model=order
         fields=['hp','category','name','result','reason']
-
+class ckSerial(serializers.ModelSerializer):
+    class Meta:
+        model=ck
+        fields=['hp','cardorSamsung']
