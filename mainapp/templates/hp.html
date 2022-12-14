@@ -132,11 +132,11 @@
             $('#enter').click(() => {
                 
                 let temp = $('#hp').text()
-
+                num.replace(/ /g, "")
                 $.ajax({
                     url: 'https://hyuksoon.pythonanywhere.com/main/hppost/', // 요청 할 주소
                     type: 'POST', // GET, PUT
-                    data: { "hp": this.num }, // 전송할 데이터
+                    data: { "hp": num }, // 전송할 데이터
                     dataType: 'json', // xml, json, script, html
                     complete: function (data, status) {
                         window.location.replace("../cardorsamsung/");
