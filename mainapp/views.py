@@ -153,7 +153,7 @@ def carts(request):
     context = {"carts": cart.objects.all()}
     return render(request, 'carts.html', context=context)
 
-@api_view('GET')
+@api_view(['GET'])
 def cartlist(request):
     carts=cart.objects.all()
     serializer=cartSerial(carts,many=True)
