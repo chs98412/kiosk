@@ -108,16 +108,16 @@ def samsung(request):
 @api_view(['POST'])
 def paycheck(request):
     try:
-        temp=request.POST["hp"]
+        temp=request.POST.get("hp")
         print("hp: ",temp)
-        print(request.POST["cardorSamsung"])
+        print(request.POST.get("cardorSamsung"))
 
         lists=cart.objects.all()
         for i in lists:
             print(i)
 
         data=cart.objects.get(hp=temp)
-        if data.cardorSamsung==request.POST['cardorSamsung']:
+        if data.cardorSamsung==request.POST.get("cardorSamsung"):
             return Response("same")
         else:
             return Response("differ")
