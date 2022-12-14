@@ -108,7 +108,7 @@ def samsung(request):
 def paycheck(request):
     try:
         print(request.POST)
-        data=cart.objects.get(hp=request.POST['hp'])
+        data=cart.objects.get(hp=request.POST['hp'][0])
         if data.cardorSamsung==request.POST['cardorSamsung']:
             return Response("same")
         else:
