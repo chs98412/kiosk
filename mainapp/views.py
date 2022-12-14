@@ -108,9 +108,11 @@ def samsung(request):
 def paycheck(request):
     try:
         print(request.POST["hp"])
-        print(request.POST)
+        lists=carts.objects.all()
+        for i in lists:
+            print(i)
 
-        data=cart.objects.get(hp=str(request.POST["hp"]))
+        data=cart.objects.get(hp=request.POST["hp"])
         if data.cardorSamsung==request.POST['cardorSamsung']:
             return Response("same")
         else:
