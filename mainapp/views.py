@@ -112,8 +112,8 @@ def paycheck(request):
         if serializer.is_valid():
             print("!!")
             print(serializer.data)
-            hp=serializer.data.hp
-            paymethod=serializer.data.cardorSamsung,
+            hp=serializer.data['hp']
+            paymethod=serializer.data['cardorSamsung']
 
             data=cart.objects.get(hp=hp)
             if data.cardorSamsung==paymethod:
@@ -122,7 +122,7 @@ def paycheck(request):
                 return Response("differ")
     except Exception as e:
         print(e)
-        return Response(request.POST["hp"])
+        return Response(e)
 @api_view(['POST'])
 def done(request):
     try:
