@@ -165,8 +165,9 @@ def cartlist(request):
 
 @api_view(['POST'])
 def cartthing(request):
-    serializer=orderSerial(data=request.data)
+    serializer=cartSerial(data=request.data)
     if serializer.is_valid():
             hp=serializer.data['hp']
             carts=cart.objects.get(hp=hp)
             return Response(cart.category,status=status.HTTP_200_OK)
+    return Response("green",status=status.HTTP_200_OK)
