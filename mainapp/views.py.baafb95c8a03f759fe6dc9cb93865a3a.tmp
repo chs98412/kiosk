@@ -117,7 +117,7 @@ def paycheck(request):
 
             data=cart.objects.get(hp=hp)
             if data.cardorSamsung==paymethod:
-                return Response(cart.category)
+                return Response(data.category)
             else:
                 return Response("differ")
     except Exception as e:
