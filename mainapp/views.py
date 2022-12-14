@@ -173,4 +173,3 @@ def cartthing(request):
         return Response("green",status=status.HTTP_200_OK)
     if serializer.data['category']=="berry":
         return Response("berry",status=status.HTTP_200_OK)
-    

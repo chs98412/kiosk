@@ -57,7 +57,15 @@
     {%load static%}
     <img src="{% static '/image/americano.png'%}" alt="">
     {%endif%}
+    {%if category == "녹차" %}
+    {%load static%}
+    <img src="{% static '/image/green.png'%}" alt="">
+    {%endif%}
+    {%if category == "딸기" %}
+    {%load static%}
+    <img src="{% static '/image/berry.png'%}" alt="">
+    {%endif%}
     <h3 style="display:inline;"> {{ice}} </h3>
-    <button class="btn btn-primary mb-3"><a href="/main/hp/">주문하기</a></button>
+    <button class="btn btn-primary mb-10"><a href="/main/hp/">주문하기</a></button>
 </body>
 </html>
