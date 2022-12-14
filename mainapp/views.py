@@ -107,12 +107,13 @@ def samsung(request):
 @api_view(['POST'])
 def paycheck(request):
     try:
-        print(request.POST["hp"])
-        lists=carts.objects.all()
+        temp=request.POST["hp"]
+        print("hp: ",temp)
+        lists=cart.objects.all()
         for i in lists:
             print(i)
 
-        data=cart.objects.get(hp=request.POST["hp"])
+        data=cart.objects.get(hp=temp)
         if data.cardorSamsung==request.POST['cardorSamsung']:
             return Response("same")
         else:
@@ -125,7 +126,6 @@ def done(request):
     try:
         
         temp=request.POST["hp"]
-        print("hp: ",request.POST["hp"])
         data=cart.objects.get(hp=temp)
         form=order()
         form.hp=data.hp
