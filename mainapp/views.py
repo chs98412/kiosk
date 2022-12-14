@@ -163,13 +163,10 @@ def cartlist(request):
     serializer=cartSerial(carts,many=True)
     return Response(serializer.data,status=status.HTTP_200_OK)
 
-@api_view(['GET'])
+@api_view(['POST'])
 def cartthing(request):
-    carts=cart.objects.get(hp=request.GET['hp'])
-    serializer=cartSerial(carts)
-    if serializer.data['category']=="coffee":
-        return Response("coffee",status=status.HTTP_200_OK)
-    if serializer.data['category']=="green":
-        return Response("green",status=status.HTTP_200_OK)
-    if serializer.data['category']=="berry":
-        return Response("berry",status=status.HTTP_200_OK)
+    serializer=orderSerial(data=request.data)
+    if serializer.is_valid():
+            hp=serializer.data['hp']
+            carts=cart.objects.get(hp=hp)
+            return Response(cart.category,status=status.HTTP_200_OK)
