@@ -28,7 +28,7 @@ class user(models.Model):
 class order(models.Model):
     hp = models.TextField()
     name = models.TextField()
-    result = models.BooleanField()
+    result = models.TextField()
     category = models.TextField()
     reason = models.TextField()
 

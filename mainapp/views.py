@@ -129,15 +129,7 @@ def done(request):
         
         serializer=orderSerial(data=request.data)
         if serializer.is_valid():
-            hp=serializer.data['hp']
-            data=cart.objects.get(hp=hp)
-            form=order()
-            form.hp=data.hp
-            form.name=serializer.data['name']
-            form.result=serializer.data['result']
-            form.category=data.category
-            form.reason=serializer.data['reason']
-            form.save()
+            serializer.save()
             return Response("done")
     except:
         return Response("error")
